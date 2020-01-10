@@ -88,3 +88,35 @@ func (s *HeapSuite) TestLeft(c *C) {
 	_, e = s.h.Left(11)
 	c.Check(e, Equals, ErrOutOfIndex)
 }
+
+func (s *HeapSuite) TestRight(c *C) {
+	var r int
+	var e error
+
+	r, e = s.h.Right(1)
+	c.Check(r, Equals, 3)
+	c.Check(e, IsNil)
+
+	r, e = s.h.Right(2)
+	c.Check(r, Equals, 5)
+	c.Check(e, IsNil)
+
+	r, e = s.h.Right(4)
+	c.Check(r, Equals, 9)
+	c.Check(e, IsNil)
+
+	_, e = s.h.Right(5)
+	c.Check(e, Equals, ErrNoRight)
+
+	_, e = s.h.Right(10)
+	c.Check(e, Equals, ErrNoRight)
+
+	_, e = s.h.Right(0)
+	c.Check(e, Equals, ErrOutOfIndex)
+
+	_, e = s.h.Right(-1)
+	c.Check(e, Equals, ErrOutOfIndex)
+
+	_, e = s.h.Right(11)
+	c.Check(e, Equals, ErrOutOfIndex)
+}
