@@ -24,10 +24,6 @@ func (s *HeapSuite) TestParent(c *C) {
 	var r int
 	var e error
 
-	r, e = s.h.Parent(1)
-	c.Check(r, Equals, 0)
-	c.Check(e, IsNil)
-
 	r, e = s.h.Parent(2)
 	c.Check(r, Equals, 1)
 	c.Check(e, IsNil)
@@ -40,13 +36,24 @@ func (s *HeapSuite) TestParent(c *C) {
 	c.Check(r, Equals, 2)
 	c.Check(e, IsNil)
 
-	_, e = s.h.Parent(0)
+	r, e = s.h.Parent(9)
+	c.Check(r, Equals, 4)
+	c.Check(e, IsNil)
+
+	r, e = s.h.Parent(10)
+	c.Check(r, Equals, 5)
+	c.Check(e, IsNil)
+
+	_, e = s.h.Parent(1)
 	c.Check(e, Equals, ErrNoParent)
+
+	_, e = s.h.Parent(0)
+	c.Check(e, Equals, ErrOutOfIndex)
 
 	_, e = s.h.Parent(-1)
 	c.Check(e, Equals, ErrOutOfIndex)
 
-	_, e = s.h.Parent(10)
+	_, e = s.h.Parent(11)
 	c.Check(e, Equals, ErrOutOfIndex)
 }
 
