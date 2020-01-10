@@ -16,3 +16,7 @@ func (h *Heap) Parent(i int) (int, error) {
 	}
 	return i >> 1, nil
 }
+
+func (h *Heap) Left(i int) (int, error) {
+	return i << 1, nil
+}
