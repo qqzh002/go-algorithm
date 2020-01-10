@@ -64,4 +64,27 @@ func (s *HeapSuite) TestLeft(c *C) {
 	r, e = s.h.Left(1)
 	c.Check(r, Equals, 2)
 	c.Check(e, IsNil)
+
+	r, e = s.h.Left(2)
+	c.Check(r, Equals, 4)
+	c.Check(e, IsNil)
+
+	r, e = s.h.Left(5)
+	c.Check(r, Equals, 10)
+	c.Check(e, IsNil)
+
+	_, e = s.h.Left(6)
+	c.Check(e, Equals, ErrNoLeft)
+
+	_, e = s.h.Left(10)
+	c.Check(e, Equals, ErrNoLeft)
+
+	_, e = s.h.Left(0)
+	c.Check(e, Equals, ErrOutOfIndex)
+
+	_, e = s.h.Left(-1)
+	c.Check(e, Equals, ErrOutOfIndex)
+
+	_, e = s.h.Left(11)
+	c.Check(e, Equals, ErrOutOfIndex)
 }

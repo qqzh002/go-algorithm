@@ -6,6 +6,7 @@ type Heap []int
 
 var ErrOutOfIndex = errors.New("out of index")
 var ErrNoParent = errors.New("no parent")
+var ErrNoLeft = errors.New("no left")
 
 func (h *Heap) Parent(i int) (int, error) {
 	if i <= 0 || i > len(*h) {
@@ -18,5 +19,12 @@ func (h *Heap) Parent(i int) (int, error) {
 }
 
 func (h *Heap) Left(i int) (int, error) {
-	return i << 1, nil
+	if i <= 0 || i > len(*h) {
+		return 0, ErrOutOfIndex
+	}
+	r := i << 1
+	if r > len(*h) {
+		return 0, ErrNoLeft
+	}
+	return r, nil
 }
