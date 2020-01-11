@@ -120,3 +120,17 @@ func (s *HeapSuite) TestRight(c *C) {
 	_, e = s.h.Right(11)
 	c.Check(e, Equals, ErrOutOfIndex)
 }
+
+func (s *HeapSuite) TestMaxHeapify(c *C) {
+	h := Heap([]int{16, 4, 10, 14, 7, 9, 3, 2, 8, 1})
+	h.MaxHeapify(2)
+	c.Check(h, DeepEquals, Heap([]int{16, 14, 10, 8, 7, 9, 3, 2, 4, 1}))
+
+	var e error
+	e = h.MaxHeapify(0)
+	c.Check(e, Equals, ErrOutOfIndex)
+	e = h.MaxHeapify(-1)
+	c.Check(e, Equals, ErrOutOfIndex)
+	e = h.MaxHeapify(11)
+	c.Check(e, Equals, ErrOutOfIndex)
+}
