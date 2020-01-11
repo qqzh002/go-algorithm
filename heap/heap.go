@@ -81,3 +81,12 @@ func (h *Heap) BuildMaxHeap() {
 		i--
 	}
 }
+
+func (h *Heap) HeapSort() {
+	h.BuildMaxHeap()
+	for i := len(*h); i >= 2; i-- {
+		h.exchange(1, i)
+		h1 := Heap((*h)[:i-1])
+		h1.MaxHeapify(1)
+	}
+}

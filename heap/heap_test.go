@@ -140,3 +140,9 @@ func (s *HeapSuite) TestBuildMaxHeap(c *C) {
 	h.BuildMaxHeap()
 	c.Check(h, DeepEquals, Heap([]int{16, 14, 10, 8, 7, 9, 3, 2, 4, 1}))
 }
+
+func (s *HeapSuite) TestHeapSort(c *C) {
+	h := Heap([]int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7})
+	h.HeapSort()
+	c.Check(h, DeepEquals, Heap([]int{1, 2, 3, 4, 7, 8, 9, 10, 14, 16}))
+}
