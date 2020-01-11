@@ -134,3 +134,9 @@ func (s *HeapSuite) TestMaxHeapify(c *C) {
 	e = h.MaxHeapify(11)
 	c.Check(e, Equals, ErrOutOfIndex)
 }
+
+func (s *HeapSuite) TestBuildMaxHeap(c *C) {
+	h := Heap([]int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7})
+	h.BuildMaxHeap()
+	c.Check(h, DeepEquals, Heap([]int{16, 14, 10, 8, 7, 9, 3, 2, 4, 1}))
+}

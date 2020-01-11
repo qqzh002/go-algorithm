@@ -73,3 +73,11 @@ func (h *Heap) MaxHeapify(i int) error {
 
 	return nil
 }
+
+func (h *Heap) BuildMaxHeap() {
+	i, _ := h.Parent(len(*h))
+	for i >= 1 {
+		h.MaxHeapify(i)
+		i--
+	}
+}
